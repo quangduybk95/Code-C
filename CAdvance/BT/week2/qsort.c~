@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+int int_compare(void const *x,void const *y)
+{
+  int m,n;
+  m=*((int*)x);
+  n=*((int*)y);
+  if(m==n) return 0;
+  return m>n?1:-1;
+}
+void qsort(void *buf,
+           size_t num,
+           size_t size,
+           int (*compare)(void const *,void const *)
+   );
+void main()
+{
+  srand(time(NULL));
+  int a[20],i;
+  for(i=0;i<20;i++)
+    {
+      a[i]=rand()%100;
+    }
+  qsort(a,20,sizeof(int),int_compare);
+  for(i=0;i<20;i++)
+    printf("%d\n",a[i]);
+}

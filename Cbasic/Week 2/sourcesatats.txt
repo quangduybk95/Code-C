@@ -1,0 +1,4 @@
+AAaabbbc
+The letter 'a' appears 4 times(s)
+The letter 'b' appears 3 times(s)
+The letter 'c' appears 1 times(s)

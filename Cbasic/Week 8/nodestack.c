@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include"nodestack.h"
+main()
+{
+  struct node *top=NULL;
+  int n,value;
+  printf("Nhap so n : ");
+  scanf("%d%*c",&n);
+  while(n!=0)
+    {
+      value=n%2;
+      top=push(top,value);
+      n=n/2;
+    }
+  while(top!=NULL)
+    {
+      top=pop(top,&value);
+      printf("%d ",value);
+    }
+  printf("\n");
+}

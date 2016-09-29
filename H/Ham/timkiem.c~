@@ -1,0 +1,21 @@
+#include<string.h>
+#include<stdio.h>
+typedef struct xx
+{
+  char name[20];
+  int old;
+} info;
+void nhap(info a[],int n)
+{
+  int i;
+  for(i=0;i<=n-1;i++)
+    {
+      printf("Nhap thong tin nguoi thu %d : ",i+1);
+      printf("Nhap ten : ");gets(a[i].name);
+      while(strstr(a[i].name," ")==NULL)
+        {
+          printf("Nhap lai : ");gets(a[i].name);
+        }
+      printf("Nhap tuoi : ");gets(a[i].old);
+    }
+}

@@ -1,0 +1,30 @@
+#include <stdio.h>
+#define X 26
+#include <string.h>
+main(int argc,char *argv[])
+{ char c;
+  int i = 0;
+   int count[X] = {0};
+  FILE *fptr,*fptw;
+    fptr=fopen(argv[1], "r");
+    fptw=fopen(argv[2], "w");
+
+	while ((c=fgetc(fptr)) != EOF)
+      {fputc(c,fptw);
+      putchar(c);
+        if (c <= 'z'  &&  c >= 'a')
+          ++count[c - 'a'];
+ 	if (c <= 'Z'  &&  c >= 'A')
+       ++count[c - 'A'];
+      }
+
+    for (i = 0; i < 26; ++i)
+{
+	if (count[i] > 0)
+      { fprintf(fptw,"The letter '%c' appears %d times(s)\n",'a'+i,count[i]);
+	printf("The letter '%c' appears %d time(s).\n", 'a' + i, count[i]);
+}
+}
+    fclose(fptr);
+    fclose(fptw);
+}

@@ -1,0 +1,22 @@
+bài sinh viên: 
+	mã nguồn: sv.c
+	input   : bangdiem.txt
+	output  :grade.dat
+bài header:
+	mã nguồn: 
+		check header: check.c
+		add header  : byte.c
+	input   : ghinhiphan.c
+bài split,merge:
+	mã nguồn: 
+		split: filesplit.c
+		read : fileread.c
+		merge: filemerge.c
+	input   : grade.dat
+	output  : out1.dat 
+		  out2.dat
+		  out.dat
+bài NokiaDB
+	mã nguồn: nokia.c
+	input   : nokiadb.txt
+	output  : nokiadb.dat

@@ -1,0 +1,6 @@
+#include<stdio.h>
+int countEven(int *a,int n);
+int countEven(int *a,int n)
+{
+
+}

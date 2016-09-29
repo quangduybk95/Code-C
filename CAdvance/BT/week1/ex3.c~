@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<time.h>
+#include<string.h>
+#define SIZE 500000
+#define MAX 500000
+typedef struct {
+  int key;
+  int content[SIZE];
+} bigObj;
+void quicksort(list a[], int left, int right)
+{
+
+  int i,j;
+  list key;
+  if(left<right)
+    {
+      key=a[(left+right)/2];
+      i=left-1;j=right+1;
+      do
+        {
+          do i++; while(sosanh(a[i],key)==-1);
+          do j--; while (sosanh(a[j],key)==1);
+          if (i<j) swap(&a[i],&a[j]);
+        }
+      while(i<j);
+      swap(&a[left],&a[j]);
+      quichsort(a,left,j);
+      quichsort(a,j+1,right);
+    }
+
+ }
+void selectionsort(list a[],int MAX)
+{
+  int i, j, min;
+  list tmp;
+  for (i = 0; i < MAX-1; i++)
+	{
+      min = i;
+      for (j = i+1; j <=MAX-1 ; j++)
+        if ( a[j].during < a[min].during)
+          min = j;
+      tmp= a[i];
+      a[i]= a[min];
+      a[min] = tmp;
+	}
+}
+main()
+{
+  int i;
+  bigObj *a;
+  a=(bigObj*)malloc(MAX*sizeof(bigObj));
+
+}

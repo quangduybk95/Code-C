@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include"queue.h"
+main()
+{
+  int i;
+  FILE *f;
+  eltype *a;
+  a=(*eltype)malloc(10*sizeof(eltype));
+  for(i=0;i<10;i++)
+    {
+      printf("Nhap ten : ");gets(a[i].name);
+      printf("Nhap sdt : ");gets(a[i].sdt);
+      printf("Nhap mail : ");gets(a[i].mail);
+    }
+  f=fopen("addressbook.dat","w+b");
+  fwrite(a,sizeof(eltype),10,f);
+}

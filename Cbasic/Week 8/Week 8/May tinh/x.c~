@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+typedef struct x
+{
+  char x[20];
+}xx;
+void tach(char s[],xx k[],int t)
+{ xx b[50];
+  int i=0,j=-1,n=strlen(s);
+  while(i<n)
+    {t++;
+      while(s[i]!=' ')
+        {
+          j++;b[t].x[j]=s[i];i++;
+        }
+      i++;
+      strcpy(k[t].x,b[t].x);
+    }
+}
+main()
+{
+  char s[100];xx k[50];int t=-1;
+  printf("Nhap s : ");
+  gets(s);
+  tach(s,k,t);
+  int i;
+  for(i=0;i<=t;i++)
+    {
+      printf("%s\n ",k[t].x);
+    }
+
+}

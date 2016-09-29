@@ -1,0 +1,486 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+enum{max=81};
+int lc;
+typedef struct
+{
+  char ten[30];
+  char sdt[20];
+  char email[30];
+}elementtype;
+
+typedef struct node node;
+typedef struct node
+{
+  elementtype element;
+  node* next;
+}node;
+
+node *cur;
+node *root;
+node *pre;
+FILE *f1;
+node *make_new_node(elementtype a)//tao nut moi
+{
+  node *new=(node*)malloc(sizeof(node));
+  new->element=a;
+  new->next=NULL;
+  return new;
+}
+
+elementtype write_data()//viet du lieu
+{
+  elementtype a;
+  printf("Vui long nhap vao ten:");
+  gets(a.ten);
+  printf("Vui long nhap vao sdt:");
+  gets(a.sdt);
+  printf("Vui long nhap vao email:");
+  gets(a.email);
+  return a;
+}
+
+void read_data()//doc du lieu
+{ cur=root;
+  do
+    {
+  printf("-------------------------\n");
+  printf("Ho va ten :%s\n",cur->element.ten);
+  printf("So dien thoai:%s\n",cur->element.sdt);
+  printf("Email:%s\n",cur->element.email);
+  cur=cur->next;
+    }while(cur!=NULL);
+}
+
+void insert_after(elementtype a)//chen sau
+{
+  node *new=make_new_node(a);
+  if(root==NULL)
+    {
+      root=new;
+      cur=new;
+    }
+  else
+    {
+      new->next=cur->next;
+      cur->next=new;
+      cur=cur->next;
+    }
+}
+
+void insert_before(elementtype a)//chen truoc
+{
+  node *new=make_new_node(a);
+  if(root==NULL)
+    {
+      root=new;
+      cur=new;
+    }
+  else
+    {
+      new->next=root;
+      root=new;
+      cur=root;
+    }
+}
+
+void insert_choose(elementtype a,int i)
+//insert vao vi tri i tuy chon
+{
+  int j;
+  j=-1;
+   node *new=make_new_node(a);
+  if(root==NULL)
+    {
+      root=new;
+      cur=new;
+    }
+  else
+    {
+  cur=root;
+  do
+    {
+      j++;
+      if(cur->next!=NULL)
+        {
+           pre=cur;
+           cur=cur->next;
+        }
+
+    }while(j<i-2&&cur->next!=NULL);
+  if(cur->next!=NULL)
+    {
+  new->next=pre->next;
+  pre->next=new;
+    }
+  else
+    {
+      printf("Vi tri ban can chen nam ngoai danh sach.\n");
+      printf("Chuong trinh se dua no ve vi tri cuoi cung.\n");
+      insert_after(a);
+      }
+    }
+}
+
+void insert_beginning(elementtype a)
+//chen vao vi tri dau tien cua danh sach
+{
+  node *new=make_new_node(a);
+  if(root==NULL)
+    {
+      root=new;
+      cur=new;
+    }
+  else
+    {
+      new->next=root;
+      root=new;
+    }
+}
+
+void insert_last(elementtype a)
+{
+  node *new=make_new_node(a);
+  if(root==NULL)
+    {
+      root=new;
+      cur=new;
+    }
+  else
+    {
+      cur=root;
+  do
+    {
+      if(cur->next!=NULL)
+        {
+          pre=cur;
+          cur=cur->next;
+        }
+    }while(cur->next!=NULL);
+    }
+  cur->next=new;
+  cur=cur->next;
+}
+
+void delete_beginning(void)//xoa o vi tri dau
+{
+  if(root==NULL)
+    {
+      printf("danh sach khong co phan tu de xoa.\n");
+    }
+  else
+    {
+  node *a;
+  a=root;
+  root=root->next;
+  free(a);
+    }
+}
+
+void delete_last(void)//xoa o vi tri cuoi
+{
+  node *a;
+  if(root==NULL)
+    {
+      printf("danh sach khong co phan tu de xoa.\n");
+    }
+  else
+    {
+      cur=root;
+  do
+    {
+          pre=cur;
+          cur=cur->next;
+    }while(cur->next!=NULL);
+  a=cur;
+  cur=pre;
+  pre->next=NULL;
+  free(a);
+    }
+}
+
+void delete_choose(int i)
+//Xoa phan tu o vi tri duoc chi dinh san.
+{
+  node *a;
+  int j;
+  j=-1;
+  if(root==NULL)
+    {
+      printf("Danh sach ko co phan tu de xoa .\n");
+    }
+  else
+    {
+  cur=root;
+  while(j<i-2)
+    {
+           j++;
+           pre=cur;
+           cur=cur->next;
+           if(cur==NULL)
+             break;
+    }
+
+  if(cur!=NULL)
+    {
+      a=cur;
+      pre->next=cur->next;
+      cur=cur->next;
+      free(a);
+    }
+  else
+    {
+      printf("Vi tri ban can xoa nam ngoai danh sach.\n");
+    }
+    }
+}
+
+void search(char s[max])//tim kiem
+{
+  node *a;
+  if(root==NULL)
+    {
+      printf("Danh sach ko co phan tu nao.\n");
+    }
+  else
+    {
+  cur=root;
+  while(cur!=NULL)
+    {
+      if(strcmp(cur->element.sdt,s)==0) break;
+           cur=cur->next;
+    }
+
+  if(cur!=NULL)
+    {
+      a=cur;
+      printf("Du lieu cua phan tu nay la:\n");
+      printf("%s\n",a->element.ten);
+      printf("%s\n",a->element.sdt);
+      printf("%s\n",a->element.email);
+    }
+  else
+    {
+      printf("khong tim thay thong tin lien quan.\n");
+    }
+    }
+}
+
+
+void save_txt(void)
+{
+  char s[max];
+  if((f1=fopen("danhba.txt","r+"))==NULL)
+    {
+      printf("Khong mo duoc file.\n");
+      return;
+    }
+  cur=root;
+  while(cur!=NULL)
+    {
+      fputs(cur->element.ten,f1);
+      fputs("  ",f1);
+      fputs(cur->element.sdt,f1);
+      fputs("  ",f1);
+      fputs(cur->element.email,f1);
+      fputs("\n",f1);
+      cur=cur->next;
+    }
+  printf("Day la noi dung trong file txt:\n");
+  fclose(f1);
+  f1=fopen("danhba.txt","r+");
+  while(fgets(s,max,f1)!=NULL)
+    {
+      printf("%s",s);
+    }
+  fclose(f1);
+}
+
+void save_dat(void)
+{
+  int m=0;
+  elementtype *a;
+  a=(elementtype*)calloc(2,sizeof(elementtype));
+  if((f1=fopen("danhba.dat","w+b"))==NULL)
+    {
+      printf("Khong mo duoc file.\n");
+      return;
+    }
+  cur=root;
+  while(cur!=NULL)
+    {
+      m++;
+      a=(elementtype*)realloc(a,m);
+      strcpy(a[m].ten,cur->element.ten);
+      strcpy(a[m].sdt,cur->element.sdt);
+      strcpy(a[m].email,cur->element.email);
+      cur=cur->next;
+    }
+  fwrite(a,m+1,sizeof(elementtype),f1);
+  printf("Khoi tao file .dat thanh cong.\n");
+  fclose(f1);
+}
+struct node *list_reverse(struct node* li)
+{
+  struct node *cur,*prev;
+  cur=NULL;
+  prev=NULL;
+  while(li!=NULL)
+    {
+      cur=li;
+      li=li->next;
+      cur->next=prev;
+      prev=cur;
+    }
+  return prev;
+  }
+
+void menu(void)
+{
+  printf("-----------------------MENU------------------------\n");
+  printf("1 -Tao danh sach bang cach chen sau.\n");
+  printf("2 -Tao danh sach bang cach chen truoc.\n");
+  printf("3 -Chen mot phan tu vao sau danh sach.\n");
+  printf("4 -Chen mot phan tu vao dau danh sach.\n");
+  printf("5 -Chen mot phan tu vao vi tri da duoc dinh san.\n");
+  printf("6 -Xoa mot phan tu o dau danh sach.\n");
+  printf("7 -Xoa mot  phan tu o cuoi danh sach.\n");
+  printf("8 -Xoa mot phan tu o vi tri bat ki.\n");
+  printf("9 -Tim kiem.\n");
+  printf("10-Hien thi danh sach.\n");
+  printf("11-Thoat va luu file vao danhba.txt.\n");
+  printf("12-Thoat va luu file vao danhba.dat.\n");
+  printf("13-Thoat.\n");
+  printf("--------------------------------------------------\n");
+}
+
+void lua_chon(void)
+{
+  int i,k;
+  char p[max];
+  printf("Vui long nhap vao lua chon cua ban :");
+  scanf("%d",&lc);
+  while(getchar()!='\n');
+  switch(lc)
+    {
+    case 1:
+      {
+        printf("Nhap vao so phan tu ban muon tao:");
+        scanf("%d",&k);
+        while(getchar()!='\n');
+        for(i=0;i<k;i++)
+          {
+            insert_after(write_data());
+          }
+        break;
+      }
+    case 2:
+      {
+        printf("Nhap vao so phan tu ban muon tao:");
+        scanf("%d",&k);
+        while(getchar()!='\n');
+        for(i=0;i<k;i++)
+          {
+            insert_before(write_data());
+          }
+        break;
+      }
+    case 3:
+      {
+        printf("Vui long nhap vao pt can chen vao sau danh sach:\n");
+        insert_last(write_data());
+        read_data();
+        break;
+      }
+    case 4:
+      {
+        printf("Vui long nhap vao pt can chen vao dau danh sach:\n");
+        insert_beginning(write_data());
+        read_data();
+        break;
+      }
+    case 5:
+      {
+        printf("Nhap vao vi tri ban muon chen vao:");
+        scanf("%d",&i);
+        while(getchar()!='\n');
+        insert_choose(write_data(),i);
+        read_data();
+        break;
+      }
+    case 6:
+      {
+        delete_beginning();
+        printf("Danh sach sau khi xoa phan tu dau tien la:\n");
+        read_data();
+        break;
+      }
+    case 7:
+      {
+        delete_last();
+        printf("Danh sach sau khi xoa phan tu cuoi cung la:\n");
+        read_data();
+        break;
+      }
+    case 8:
+      {
+        printf("Nhap vao vi tri ban muon xoa:");
+        scanf("%d",&i);
+        while(getchar()!='\n');
+        delete_choose(i);
+        printf("Danh sach sau khi xoa la:\n");
+        read_data();
+        break;
+      }
+    case 9:
+      {
+        printf("Nhap vao sdt ban muon tim kiem:");
+        gets(p);
+        search(p);
+        break;
+      }
+    case 10:
+      {
+        read_data();
+        break;
+      }
+    case 11:
+      {
+        save_txt();
+        return;
+        break;
+      }
+    case 12:
+      {
+        save_dat();
+        return;
+      }
+    case 13:
+      {
+        printf("Ban da chon thoat.\n");
+        break;
+      }
+        case 14 :
+ cur=root;
+  while(cur!=NULL)
+     {
+ cur=cur->next;
+   }
+          list_reverse(cur);break;
+    default:
+      {
+        printf("Ban da nhap sai yeu cau.\n");
+        break;
+      }
+    }
+}
+
+int main()
+{
+do
+  {
+    menu();
+    lua_chon();
+  }while(lc!=11);
+}

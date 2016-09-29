@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+///////////////////////////////////////
+typedef struct{
+  int num;
+} elementtype;
+#include "stack.h"
+
+void printStack(stack list)
+{
+  list.cur = list.root;
+  while(list.cur != NULL)
+    {
+      printf("%d\n",list.cur->element.num);
+      list.cur = list.cur->next;
+    }
+}
+
+elementtype getData()
+{
+  elementtype e;
+  printf("So: ");
+  scanf("%d%*c",&e.num);
+  return e;
+}
+main()
+{
+  char kt;
+  stack list;
+  createStack(&list);
+  do
+    {
+      printf("Stack test\nMENU:\n");
+      printf("0. EXIT\n");
+      printf("1. PUSH\n");
+      printf("2. POP\n");
+      printf("3. DISPLAY\n");
+      printf("4. DELETE\n");
+      printf("5. IS EMPTY\n");
+      printf("Ban chon?: ");
+      scanf("%c%*c",&kt);
+      switch(kt )
+        {
+        case '1':
+          {
+            push(&list,getData());
+          }
+          break;
+        case '2':{
+          elementtype e = pop(&list);
+          printf("POP: %d\n",e.num);
+        } break;
+        case '3':{
+          printStack(list);
+        }break;
+        case '4':deleteStack(&list);break;
+        case '5':
+          {
+            if (isEmpty(list)) printf("NULL\n");
+            else printf("NOT NULL\n");
+          }
+        }
+    }
+  while(kt != '0');
+  deleteStack(&list);
+}

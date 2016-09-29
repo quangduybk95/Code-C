@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct
+{
+  int num;
+} elementtype;
+
+#include "singelNode.h"
+main()
+{
+
+}

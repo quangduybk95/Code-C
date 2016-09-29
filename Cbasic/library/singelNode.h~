@@ -1,0 +1,15 @@
+////////////////////////////////////
+typedef struct node node;
+// mot node gom
+typedef struct node {
+	elementtype element;
+	node *next;
+}node;
+// mot ds node gom co root,tail,cur
+typedef struct {
+	node *root;
+	node *tail;
+	node *cur;
+	node *prev;
+} nodelist;
+//////////////////////////////////////////////////

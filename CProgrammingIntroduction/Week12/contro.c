@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<math.h>
+#define MAX 100
+float input(float a[],int n);
+float input(float a[], int n)
+{ int i,s=0; for(i=1 ;i<=n ;i++ )
+               { printf("Nhap so thu %d: ",i);scanf("%f",&a[i]); s=s+a[i]; } return s*1.0/n; }
+float *xuli(float a[],int n,float tb)
+{ int i,d; float *p; float min=fabs(a[1]-tb);
+  for(i=1 ;i<=n ;i++ ) { if ((fabs(a[i]-tb)<min)) { min=fabs(a[i]-tb); p=a+i; printf("%.2f | %p\n",*p,p); } } return p; }
+main() { int n; float a[MAX],tb; float so; int vitri;
+  printf("Ban muon nhap bao nhieu so?: "); do{ scanf("%d",&n); }
+  while (n<=0); tb=input(a,n);
+  printf("gia tri tb: %.2f\n",tb);
+  printf("So gan voi gia tri tb: %.2f . Vi tri: %p\n",*xuli(a,n,tb),xuli(a,n,tb)); }

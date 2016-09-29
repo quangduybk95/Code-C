@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<string.h>
+void thaykitu(char a[],char c1,char c2)
+{
+  int n,i;
+  n=strlen(a);
+  for(i=0;i<n;i++)
+    {
+      if(a[i]==c1) a[i]=c2;
+    }
+}
+main()
+{
+  char a[]="mama";
+  thaykitu(a,'m','p');
+  printf("%s \n",a);
+}

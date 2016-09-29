@@ -1,0 +1,15 @@
+#include<strio.h>
+#include<math.h>
+void pt2{float a,float b,float c}
+{
+  float delta;delta=b*b-4*a*c;
+  if(delta<0) printf("pt vo nghiem\n");
+    else if(delta=0) printf("Pt co nghiem kep x = %-5.2f\n",-c/a);
+    else printf("pt co 2 nghiem : x1= %-5.2f ; x2= %-5.2f\n",((sprt(delta)-b)/2/a),((-sqrt(delta)-b)/2/a));
+}
+main()
+
+{
+  int n=atof(int argc,char *argv[])
+
+}

@@ -1,0 +1,17 @@
+#include<stdio.h>
+main()
+{ int ran,stt1,stt2,d1,d2,k,t;
+  srand ( time ( NULL ));t=5;
+	ran = 1 + rand () % 10;
+    if (ran%2==0) {stt1=1 ; stt2=2;} else {stt1=2;stt2=1;}
+
+    printf("ICT GAME CENTER - SMART STRAEGY\n");
+    printf("start : 5 <-\n");
+    printf("destination : 100 <- \n");
+    printf("who play first (randomly) : %d\n",stt1);
+    while (t<100) {scanf("%d",&d1);
+      do{ if (d1>5) scanf("%d",&d1);} while (d>5);
+      t=t+d1;
+        }
+
+}

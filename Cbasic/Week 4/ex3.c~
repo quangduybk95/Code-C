@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<math.h>
+typedef struct point
+{
+  doublue x;
+  double y;
+} point_t;
+typedef struxt circle
+{
+  point_t center;
+  double radius;
+} circle_t;
+  main()
+  {
+    point_t a;circle_t k;double m;
+    printf("Nhap toa do diem : ");
+    scanf("%d%*c%d%*c",&a.x,&a.y);
+     printf("Nhap toa do tam : ");
+    scanf("%d%*c%d%*c",&k.center.x,&k.center.y);
+    printf("Nhap ban kinh : ");scanf("%d%*c",&k.radius);
+    m=sqrt(sqr(a.x-k.center.x)-sqr(a.y-k.center.y));
+    if(m>k.radius) printf("k thuoc\n");
+    else printf("thuoc\n");
+  }

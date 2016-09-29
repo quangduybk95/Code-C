@@ -1,0 +1,39 @@
+#include<stdio.h>
+main()
+{
+char s1[5],s2[5];
+int t1,t2,c1,c2,pt1,pt2,pc1,pc2,p1,p2,c;
+ printf("Nhap vao ten co gai thu nhat(ten) :\t");scanf("%5s",&s1);
+ printf("Nhap vao ten co gai thu hai(ten) :\t");scanf("%5s",&s2);
+printf("Nhap vao tuoi co gai thu nhat :\t");scanf("%d",&t1);
+printf("Nhap vao chieu cao co gai thu nhat(cm) :\t");scanf("%d",&c1);
+printf("Nhap vao tuoi co gai thu hai :\t");scanf("%d",&t2);
+printf("Nhap vao chieu cao co gai thu hai(cm) :\t");scanf("%d",&c2);
+printf("Nhap chieu cao cua ban (cm) :\t");scanf("%d",&c);
+ if (t1<=16) (pt1=0);else if  ((16<t1)&&(t1<21)) (pt1=5);else (pt1=2);
+ if (t2<=16) (pt2=0);else if  ((16<t2)&&(t2<21)) (pt2=5);else (pt2=2);
+ if (c1>=c) (pc1=-1); else if ((c-c1)>30) (pc1=-2);else (pc1=3);
+ if (c2>=c) (pc2=-1); else if ((c-c2)>30) (pc2=-2);else (pc2=3);
+printf("Yahoo Chat log\t\n");
+printf("Yahoo(1)\t\n");
+printf("You\t: \tHi %-5s\t\n",s1);
+printf("%-5s\t: \tHi|\t\n",s1);
+printf("You\t: \tHow old are you? \n");
+printf("%-5s\t: \t%d years old\n",s1,t1);
+printf("You\t: \tHow tall are you?\n");
+printf("%-5s\t: \t%dcm\t\t\n",s1,c1);
+printf("\n");
+printf("Yahoo(2)\n");
+printf("You\t: \tHi %-5s\n",s2);
+printf("%-5s\t: \tHi\n",s2);
+printf("You\t: \tHow old are you?\n");
+printf("%-5s\t: \t%d years old\n",s2,t2);
+printf("You\t: \tHow tall are you? \n");
+printf("%-5s\t: \t%dcm\n",s2,c2);
+printf("\n");
+p1 = pt1 + pc1;
+p2 = pt2 + pc2;
+ printf("Diem cua tung nguoi la : %d %d\n",p1,p2);
+ if (p1>p2) printf("%5s la nguoi phu hop voi ban\n",s1);else if (p1<p2) printf("%5s la nguoi phu hop voi ban\n",s2);else printf("Ban nen chon 1 nguoi thu 7 , 1 nguoi chu nhat\n");
+}
+

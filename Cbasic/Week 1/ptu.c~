@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+  int a[20],i,n,min;
+  float arv,sum=0,t;
+  printf("Nhap so phan tu : ");scanf("%d%*c",&n);
+  for(i=0;i<=n-1;i++)
+    {
+      printf("Nhap phan tu thu %d ",i+1);
+      scanf("%d%*c",a[i]);
+    }
+  for(i=0;i<=n-1;i++)
+      sum=sum+a[i];
+  arv=sum/n;
+
+  for(i=0;i<=n-1;i++)
+    {
+      t=abs(arv-a[i]);
+      if(abs(arv-a[i+1])<=t) min=a[i+1]; else min=a[i];
+    }
+  printf("Phan tu gan trung binh nhat la : %-5d ",a[i]);
+}

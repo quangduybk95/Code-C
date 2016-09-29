@@ -1,0 +1,6 @@
+#include<stdio.h>
+main()
+{
+  char a,b,c;
+  printf("Nhap 3 ki tu : \n");scanf("%c%*c%c%*c%c",&a,&b,&c);
+}

@@ -1,0 +1,10 @@
+#include<stdio.h>
+void Linereadwrite(FILE *f1,FILE *f2)
+{
+  char buff[MAX];int len;
+  while((fgets(buff,MAX,f1))!=NULL)
+    { len=strlen(buff)-1;
+      fprintf(f2,"%d %s",len,buff);
+      printf("%s",buff);
+    }
+}

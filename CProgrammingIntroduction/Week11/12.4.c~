@@ -1,0 +1,11 @@
+#include<stdio.h>
+void xep(int a,int b, int c);
+void xep(int a,int b, int c)
+{ int *x,*y;
+  printf("Nhap 3 so : ");scanf("%d%*c%d%*c%d%*c",&a,&b,&c);
+  x=&a;
+  a=b;y=&b;
+  b=c;c=x;
+  printf("day sap xep : %d %d %d \n",a,b,c);
+
+}

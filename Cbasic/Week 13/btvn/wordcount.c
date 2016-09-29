@@ -1,0 +1,80 @@
+#include "BST_wordcount.h"
+treetype tree;
+void read_data();
+void display(treetype tr);
+void find(treetype tr);
+int main()
+{
+  int a,kt=1;
+  read_data();
+  do
+    {
+      printf("\n\tMENU\n");
+      printf("1. Display\n");
+      printf("2. Find\n");
+      printf("3. Quit\n");
+      printf("\tMoi ban Chon : "); scanf("%d",&a);
+      switch(a)
+        {
+        case 1:
+          display(tree);
+          break;
+        case 2:
+          find(tree);
+          break;
+        case 3:
+          kt=0; break;
+        default:
+          kt=0; break;
+        }
+    }while(kt);
+
+}
+void read_data()
+{
+  FILE *fin;
+  elementtype tmp; treetype k;
+  fin=fopen("vanban.txt","r");
+  if(fin==NULL)
+    {printf("Loi mo tep.\n"); exit(0);}
+  while(fscanf(fin,"%s",tmp.word)!=EOF)
+    {
+      k=search(tmp,tree);
+      if(k!=NULL)
+        {
+          k->element.count++;
+        }
+      else
+        {
+          tmp.count=1;
+          insert(&tree,tmp);
+        }
+    }
+  fclose(fin);
+}
+void display(treetype tr)
+{
+  if(tr!=NULL)
+    {
+      display(tr->left);
+      printf("%s: %d\n",tr->element.word,tr->element.count);
+      display(tr->right);
+    }
+}
+void find(treetype tr)
+{
+  elementtype tmp;
+  treetype k;
+  printf("Nhap tu can tim kiem: ");
+  scanf("%s",tmp.word);
+  k=search(tmp,tree);
+  if(k!=NULL)
+    {
+      printf("Tu can tim: %s\n",k->element.word);
+      printf("So la xuat hien: %d\n",k->element.count);
+    }
+  else
+    {
+      printf("Khong co tu nay trong doan van!\n");
+    }
+}

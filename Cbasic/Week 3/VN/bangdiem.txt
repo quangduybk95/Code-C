@@ -1,0 +1,4 @@
+STT       MSSV      Ho ten                        SDT            DIEM      
+1         20130590  Duong Quang Duy               0975700717     3         
+2        20345678  Le Vinh Thien                 0987878787     3         
+3        22323232  Doan ANh Tu                   0987878787     3         

@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<stdlib.h>
+main(int argc,char *argv[])
+{ int n,i,sum=0;
+  FILE *f1;
+  int *p;
+  printf("So luong : ");scanf("%d%*c",&n);
+    p=(int*)malloc(n*sizeof(int));
+  for(i=0;i<n;i++)
+    {
+      printf("Nhap so thu %d ",i+1);
+      scanf("%d%*c",&p[i]);
+      sum=sum+p[i];
+    }
+  f1=fopen(argv[1],"w+");
+  fprintf(f1,"%d ",n);
+  for(i=0;i<n;i++)
+    fprintf(f1,"%d ",p[i]);
+  fprintf(f1,"%d ",sum);
+  fclose(f1);
+}

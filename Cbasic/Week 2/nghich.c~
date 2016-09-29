@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include<stdlib.h>
+main(void)
+{ int c;
+  FILE *fptr,*fptw;
+     char filename1[]= "lab1.txt";
+     char filename2[]= "lab1w.txt";
+    fptr=fopen(filename1, "r");
+    fptw=fopen(filename2, "w");
+	while ((c=fgetc(fptr)) != EOF)
+      { fputc(c,filename2);
+        putchar(c);}
+flose(fptr);
+flose(fptw);
+}

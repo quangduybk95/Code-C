@@ -1,0 +1,13 @@
+#include<stdio.h>
+int nhap(int a[],int n)
+{ int i;
+  for (i=0;i<=n-1;i++)
+    {printf(" nhap ptu thu %d cua mang : ",i+1);scanf("%d",&a[i]);
+    }
+  return n;
+}
+main()
+{ int n,a[100],i;
+  n=nhap(a,n);
+
+}

@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef int keytype;
+typedef struct node
+{
+  keytype key;
+  struct node *left;
+  struct node *right;
+}nodetype;
+typedef node* treetype;
+void insertnode(int x,treetype root)
+{
+  if(root==NULL)
+    {
+      root=(nodetype*)malloc(sizeof(nodetype));
+      root->key=x;
+      root->left=NULL;
+      root->right=NULL;
+    }
+  else if(x<b.root->key) insertnode(x,root->left);
+  else if(x>b.root->key) insertnode(x,root->right);
+}

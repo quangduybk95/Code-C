@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<string.h>
+typedef struct x
+{
+  char hoten[30];
+  char mau[10];
+} info;
+void taomatran(char a[][])
+{
+  int i,j;
+  strcpy(a[0][0],"Xanh");
+}
+
+main()
+{
+
+ }
+

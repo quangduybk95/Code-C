@@ -1,0 +1,64 @@
+// Doan Anh Tu
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct elementtype
+{
+  int key[1];
+  char name[30];
+  char sdt[13];
+}elementtype;
+elementtype list1[100],list2[100];
+
+void verify(elementtype l1[], elementtype l2[],int n,int m);
+int load_data();
+int N,M;
+int main()
+{
+  load_data();
+  verify(list1,list2,N,M);
+}
+
+int load_data()
+{
+  int i;
+  FILE *fin1,*fin2;
+  fin1=fopen("list1.txt","r");
+  fin2=fopen("list2.txt","r");
+  if(fin1==NULL || fin2==NULL)
+    {printf("Loi mo tep!\n"); return 1;}
+  i=0;
+  while(!feof(fin1))
+    {
+      fscanf(fin1,"%d %[^0123456789]%s",list1[i].key,list1[i].name,list1[i].sdt);
+      i++;
+    }
+  N=i;
+  i=0;
+  while(!feof(fin2))
+    {
+      fscanf(fin2,"%d %[^0123456789]%s",list2[i].key,list2[i].name,list2[i].sdt);
+      i++;
+    }
+  M=i;
+}
+
+void verify(elementtype l1[], elementtype l2[],int n,int m)
+{
+  int i,j;
+  i=0; j=0;
+  while(i<n && j<m)
+    {
+      if(list1[i].key<list2[i].key)
+        {printf("Khong co key %d trong list 2.\n",l1[i].key[0]); i++;}
+      else if(list1[i].key==list2[i].key)
+        {i++;j++;}
+      else
+        {printf("Khong co key %d trong list 1.\n",l2[i].key[0]); j++;}
+      for(;i<n;i++)
+        {printf("Khong co key %d trong list 2.\n",l1[i].key[0]);}
+      for(;j<m;j++)
+        {printf("Khong co key %d trong list 1.\n",l2[i].key[0]);}
+    }
+}

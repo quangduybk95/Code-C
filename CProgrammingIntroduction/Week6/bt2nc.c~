@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<math.h>
+main()
+{
+  float x1,y1,x2,y2;
+  printf("Nhap toa do cua ban : \n");scanf("%.2f%.2f",&x1,&y1);
+  if (x1>0 && y1>0) printf("ban o goc dong bac cua ban do");
+   if (x1>0 && y1<0) printf("ban o goc dong nam cua ban do");
+    if (x1<0 && y1>0) printf("ban o goc tay bac cua ban do");
+     if (x1<0 && y1<0) printf("ban o goc tay nam cua ban do");
+      if (x1==0 && y1>0) printf("ban o goc dong cua ban do");
+       if (x1==0 && y1<0) printf("ban o goc nam cua ban do");
+        if (x1>0 && y1==0) printf("ban o goc dong cua ban do");
+         if (x1<0 && y1==0) printf("ban o goc tay cua ban do");
+}

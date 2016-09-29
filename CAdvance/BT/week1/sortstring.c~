@@ -1,0 +1,16 @@
+#include<stdio.h>
+void insertionsort(list a[])
+{
+	time_t t1,t2;
+	int i, j;
+	int next;
+	time(&t1);
+	for (i=1; i<MAX; i++) {
+		next= a[i];
+		for (j=i-1;j>=0 && next< a[j];j--)
+			a[j+1] = a[j];
+		a[j+1] = next;
+	}
+	time(&t2);
+	printf("INSERTION SORT  voi %d so mat: %d s \n",MAX,(int)(t2-t1));
+}

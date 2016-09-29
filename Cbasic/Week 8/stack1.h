@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 50
+typedef int eltype;
+typedef eltype stacktype[MAX];
+
+int top;
+
+void Initialize (stacktype stack)//khoi tao
+{
+  top=0;
+}
+int empty(stacktype stack)
+{
+  return top==0;
+}
+int full(stacktype stack)
+{
+  return top==MAX;
+}
+void push(eltype el,stacktype stack)
+{
+  if(full(stack)) printf("stack tran\n");
+  else stack[top++]=el;
+}
+eltype pop(stacktype stack)
+{
+  if(empty(stack)) printf("stack k con de lay ra\n");
+  else return stack[--top];
+}

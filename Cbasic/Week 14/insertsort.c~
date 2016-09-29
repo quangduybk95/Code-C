@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+void insertsort(int a[],int n)
+{
+  int i,j;
+  int next;
+  for(i=1;i<n;i++)
+    {
+      next=a[i];
+      for(j=i-1;j>=0&&next<a[j];j--)
+        {
+          a[j+1]=a[j];
+          a[j+1]=next;
+        }
+    }
+}
+main()
+{
+  int a[10]={3,1,5,6,2,9,0,10};
+  int i;
+  insertsort(a,8);
+  for(i=0;i<8;i++)
+    {
+      printf("%d \n",a[i]);
+    }
+}

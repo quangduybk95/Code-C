@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 50
+typedef struct aaa
+{
+  char name[20];
+  char sdt[15];
+}eltype;
+eltype  nhapdulieu()
+{ eltype k;
+  printf("Nhap name : ");gets(k.name);
+  printf("Nhap sdt : ");gets(k.sdt);
+  return k;
+}
+typedef struct stackrec
+{
+  eltype storage[MAX];
+  int top;
+}stacktype;
+void initialize(stacktype *stack)
+{
+  (*stack).top=0;
+}
+int empty(stacktype stack)
+{
+  return stack.top==0;
+}
+int full(stacktype stack)
+{
+  return stack.top==MAX;
+}
+void push(eltype el,stacktype *stack)
+{
+  if(full(*stack))
+    printf("stack tran\n");
+  else (*stack).storage[(*stack).top++]=el;
+}
+eltype pop(stacktype *stack)
+{
+  if(empty(*stack)) printf("stack k con de lay ra \n");
+  else return (*stack).storage[--(*stack).top];
+}
+void indulieu(eltype k)
+{ printf("---------------------------\n");
+  printf("%s \n",k.name);
+  printf("%s \n",k.sdt);
+  printf("\n");
+}

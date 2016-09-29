@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include"stack2.h"
+main()
+{ int i=0;
+  stacktype a[10];
+  eltype k,m;
+  a[0].top=0;
+  a[i].top=0;
+  for(i=0;i<2;i++)
+    {
+      nhapdulieu(k);
+      push(k,a[0]);
+    }
+   for(i=0;i<1;i++)
+    {
+      nhapdulieu(k);
+      push(k,a[1]);
+    }
+   printf("%d %d \n",a[0].top,a[i].top);
+   while(a[0].top!=0)
+     {
+       m=pop(a[0]);
+       indulieu(m);
+     }
+   printf("\n\n\n");
+    while(a[1].top!=0)
+     {
+       m=pop(a[1]);
+       indulieu(m);
+     }
+}

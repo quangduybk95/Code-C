@@ -1,0 +1,161 @@
+////////////////////////////////////
+typedef struct node node;
+// mot node gom
+typedef struct node {
+  elementtype element;
+  node * next;
+  node * prev;
+}node;
+// mot ds node gom co root,cur
+typedef struct {
+  node * root;
+  node * cur;
+  node * tail;
+} doubleList;
+
+////////////////////////////////////////////////// nguyen ham
+// cac ham khoi tao
+void   createDoubleList(doubleList * list);
+node * makeNewNode(elementtype e);
+
+// insert
+node * insertAfter(doubleList * list, elementtype e);
+node * insertBegin(doubleList * list, elementtype e);
+node * insertEnd(doubleList * list, elementtype e);
+node * insertAtPosition(doubleList * list, elementtype e, int n);
+
+// delete
+node * deleteBegin(doubleList * list);
+node * deleteEnd(doubleList * list);
+node * deleteAtPosition(doubleList * list, int n);
+node * deleteDoubleList(doubleList * list);
+
+// print data
+void printDoubleList(doubleList  list);
+
+// total node
+int totalDoubleList(doubleList list);
+
+/////////////////////////////////////////////// cac ham
+///////////////// cac ham khoi tao
+// tao ds moi
+void createDoubleList(doubleList * list)
+{
+  (*list).root  = (*list).cur = (*list).tail  = NULL;
+}
+
+// tao nut moi
+node * makeNewNode(elementtype e)
+{
+  node * new = (node *)malloc(sizeof(node));
+  new->element = e;
+  new->next = NULL;
+  new->prev = NULL;
+  return new;
+}
+
+/////////////// insert
+node * insertEnd(doubleList *list,elementtype e)
+{
+	node * new = makeNewNode(e);
+	if((*list).root == NULL)
+	{
+      (*list).root = (*list).tail = new;
+	}
+	else
+	{
+		(*list).tail->next = new;
+		new->prev = (*list).tail;
+        (*list).tail = (*list).tail->next;
+	}
+	return (*list).tail;
+}
+
+// inser begin
+node * insertBegin(doubleList * list, elementtype e)
+{
+  node * new = makeNewNode(e);
+  if ((*list).root == NULL)
+    {
+      (*list).root = (*list).tail = new;
+    }
+  else
+    {
+      new->next = (*list).root;
+      new->prev = (*list).root;
+      (*list).root = new;
+    }
+  return (*list).root;
+}
+
+// insert at  position
+node * insertAtPosition(doubleList * list,elementtype e,int n)
+{
+  node * new = makeNewNode(e);
+  if((*list).root == NULL)
+    {
+      (*list).root = new;
+      (*list).tail = new;
+    }
+  else if(n <= 1) return insertBegin(list,e);
+  else if(n >= totalDoubleList(*list)) return insertEnd(list,e);
+  else {
+    int i=0;
+    node *tmp = (*list).root;
+    while((tmp->next != NULL)&&(i <= n-1))
+      {
+        i++;
+        tmp = tmp->next;
+      }
+    new->next = tmp;
+    tmp->prev->next = new;
+    new->prev = tmp->prev;
+    tmp->prev = new;
+    return new;
+  }
+}
+//////////////////delete
+//delete begin
+node * deleteBegin(doubleList * list)
+{
+  if((*list).root != NULL)
+	{
+      node * new = (*list).root;
+		(*list).root = (*list).root->next;
+		free(new);
+	}
+  return (*list).root;
+}
+
+// delete last
+node * deleteEnd(doubleList *list)
+{
+  if((*list).tail != NULL)
+    {
+      node * new = (*list).tail;
+      (*list).tail = (*list).tail->prev;
+      (*list).tail->next = NULL;
+      free(new);
+       return (*list).tail;
+    }
+}
+
+// delete all
+node * deleteDoubleList(doubleList * list)
+{
+  while((*list).root != NULL) deleteBegin(list);
+}
+
+///////////////// total
+
+int totalDoubleList(doubleList list)
+{
+  int i=0;
+  list.cur = list.root;
+	while(list.cur != NULL)
+      {
+        i++;
+        list.cur = list.cur->next;
+      }
+    return i;
+}

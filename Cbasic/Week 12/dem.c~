@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct
+{
+  char c[10];
+  int num=0;
+}elementtype;
+#include<tree.h>
+void  insertNode(tree *t, elementtype x)
+{
+  if (*t == NULL){
+        *t=(tree)malloc(sizeof(tree));
+        (*t)->element= x;
+        (*t)->left = NULL;
+        (*t)->right = NULL;
+    }
+  else if (x.num < (*t)->element.num) insertNode(&(*t)->left,x);
+  else if (x.num> (*t)->element.num) insertNode(&(*t)->right,x);
+  else
+    {
+              (*t)->element.num++;
+  }
+}
+void inorderPrint(tree t)
+{
+  if(t!=NULL)
+    {
+      inorderPrint(t->left);
+      printf("%s : %d\n",t->element.c,t->element.num);
+      inorderPrint(t->right);
+    }
+}
+

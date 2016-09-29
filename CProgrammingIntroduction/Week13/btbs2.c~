@@ -1,0 +1,11 @@
+#include<stdio.h>
+#include<string>
+void left(char a[])
+{ int n;char x;
+  printf("Nhap xau : ");gets(a);
+  n=strlen(a);
+  a[0]=x;
+  a[0]=a[n-1];
+  a[n-1]=x;
+  printf("Xau sau khi sua : %s ",a);
+}

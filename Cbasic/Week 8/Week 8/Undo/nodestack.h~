@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct x
+{
+  int dl;
+}eltype;
+typedef struct node node;
+typedef struct node {
+  eltype data;
+node *next;
+}node;
+node *push(node *p,int value)
+{
+  node *tmp;
+  tmp=(node*)malloc(sizeof(node));
+  tmp->data.dl=value;
+  tmp->next=p;
+  p=tmp;
+  return(p);
+}
+node *pop(node *p,int *value)
+{
+  node *tmp;
+  *value=p->data.dl;
+  tmp=p;
+  p=p->next;
+  free(tmp);
+  return(p);
+}

@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlub.h>
+typedef struct
+{
+  char user[30];
+  char pass[10];
+  float diem;
+}elementtype;
+#include"doubleList.h"
+void docfile()
+{
+  FILE *f;char buff[81];
+  if((f=fopen("sinhvien.txt","r"))==NULL)
+    printf("Khong tim thay file\n");
+  int n=0,i;
+  while(fgets(buff,81,f)!=NULL)
+    n++;
+  rewind(f);
+  for(i=0;i<n;i++)
+    {
+      elementtype tmp;
+      fscanf(f,"%s\t%s\t%f\t",tmp.user,tmp.pass,&tmp.diem);
+    }
+}
+main()
+{
+  int lc;
+  do
+    {
+      printf("###################\n");
+      printf("MENU\n");
+      printf("1.Dang nhap\n");
+      printf("2.Thoat\n");
+      printf("\n");
+      printf("Moi ban nhap lua chon : ");
+      scanf("%d%*c",&lc);
+      switch(lc)
+        {
+        case 1 :
+
+        }
+
+    }
+  while(lc!=2);
+}

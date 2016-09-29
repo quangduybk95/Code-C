@@ -1,0 +1,8 @@
+#include<stdio.h>
+void chuyendoi(char a[])
+{ char x,y;
+  printf("Nhap xau : ");gets(a);
+  printf("Nhap ki tu thu nhat : ");scanf("%c%*c",&x);
+   printf("Nhap ki tu thu hai : ");scanf("%c%*c",&y);
+
+}

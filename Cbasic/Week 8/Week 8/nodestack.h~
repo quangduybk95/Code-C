@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+  int data;
+struct node *next;
+};
+struct node *push(struct node *p,int value)
+{
+  struct node *tmp;
+  tmp=(struct node*)malloc(sizeof(struct node));
+  tmp->data=value;
+  tmp->next=p;
+  p=tmp;
+  return(p);
+}
+struct node *pop(struct node *p,int *value)
+{
+  struct node *tmp;
+  *value=p->data;
+  tmp=p;
+  p=p->next;
+  free(tmp);
+  return(p);
+}

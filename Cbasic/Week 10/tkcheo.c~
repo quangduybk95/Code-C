@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define not -1;
+typedef int eltype;
+int binarysearch(eltype a[],eltype x,int lo,int hi)
+{
+  if(lo>hi) return not;
+  int mid;
+  mid=(lo+hi)/2;
+  if(a[mid]<x) return binarysearch(a,x,mid+1,hi);
+  else if(a[mid]>x) return binarysearch(a,x,lo,mid-1);
+  else
+    return mid;
+}
+main()
+{
+  int i;
+  int a[]={1,2,4,6,7,9,10};
+  int b[]={2,3,5,6,7,8,9};
+  printf("Cac ptu co trong a ma co trong b la : ");
+  for(i=0;i<7;i++)
+    {
+      if(binarysearch(b,a[i],0,6)!=-1) printf("%d ",a[i]);
+    }
+    printf("\n");
+
+   printf("Cac ptu co trong a ma k co trong b la : ");
+  for(i=0;i<7;i++)
+    {
+      if(binarysearch(b,a[i],0,6)==-1) printf("%d ",a[i]);
+    }
+    printf("\n");
+
+   printf("Cac ptu co trong b ma co trong a la : ");
+  for(i=0;i<7;i++)
+    {
+      if(binarysearch(a,b[i],0,6)==-1) printf("%d ",b[i]);
+    }
+  printf("\n");
+}

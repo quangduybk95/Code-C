@@ -1,0 +1,194 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+#define MAX 2000000
+int menu();
+int getInt();
+
+typedef struct{
+  int key;
+}elementtype;
+
+void insertionSort(elementtype a[],int n);
+void selection(elementtype a[],int n);
+void heapSort(elementtype[],int);
+void heapify(elementtype[],int);
+void adjust(elementtype a[],int root,int n);
+
+void insertionSort(elementtype a[],int n){
+  int i,j;
+  elementtype next;
+  for(i=1;i<n;i++){
+    next=a[i];
+    for(j=i-1 ;j>=0&&next.key<a[j].key ;j-- )
+      a[j+1]=a[j];
+    a[j+1]=next;
+
+  }
+}
+
+void selection(elementtype a[],int n){
+  int i,j,min;
+  elementtype tmp;
+  for(i=0 ;i<n-1 ;i++ ){
+    min=i;
+    for(j=i+1;j<=n-1;j++)
+      if(a[j].key<a[min].key)
+        min=j;
+
+    tmp=a[i];
+    a[i]=a[min];
+    a[min]=tmp;
+  }
+}
+
+void swap(elementtype *a, elementtype *b){
+  elementtype temp;
+  temp=*a;
+  *a=*b;
+  *b=temp;
+}
+void noibot(elementtype a[],int n){
+  int i,j;
+  for(i=0;i<n-1;i++)
+    for(j=i+1;j<n;j++)
+      if(a[i].key>a[j].key)
+        swap(&a[i],&a[j]);
+}
+main(){
+  int choice,n,j;
+  int *p;
+  long i;
+  float time1,time2,time3,time4,time5;
+  elementtype a[MAX];
+  clock_t t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
+  p=(int *)malloc(2000*sizeof(int));
+  srand(time(NULL));
+  do{
+    choice=menu();
+    switch(choice ){
+    case 1:
+      t1=clock();
+      for(i=0;i<MAX;i++){
+        j=rand()%1000;
+        a[i].key=j;
+        //    printf("a[%ld]= %d\n",i,j);
+      }
+      t2=clock();
+      time1=(float)(t2-t1)/CLOCKS_PER_SEC;
+      printf("\n");
+      printf("Thoi gian la %fs\n",time1);
+      free(p);
+      break;
+    case 2:
+      t3=clock();
+      insertionSort(a,MAX);
+      t4=clock();
+      //for(i=0;i<2000;i++)
+      // printf("%d\n",a[i]);
+      // t4=clock();
+      time2=(float)(t4-t3)/CLOCKS_PER_SEC;
+      printf("Thoi gian sap xep chen la %fs\n",time2);
+      break;
+    case 3:
+      t5=clock();
+      selection(a,MAX);
+      // for(i=0;i<2000;i++)
+      //  printf("%d\n",a[i].key);
+      t6=clock();
+      time3=(float)(t6-t5)/CLOCKS_PER_SEC;
+      printf("Thoi gian sap xep lua chon la %fs\n",time3);
+      break;
+    case 4:
+      t7=clock();
+      noibot(a,MAX);
+      //  for(i=0;i<2000;i++)
+      //     printf("%d\n",a[i].key);
+      t8=clock();
+      time4=(float)(t8-t7)/CLOCKS_PER_SEC;
+      printf("Thoi gian sap xep noi bot la %fs\n",time4);
+      break;
+    case 5:
+      t9=clock();
+      heapSort(a,MAX);
+      t10=clock();
+      time5=(float)(t10-t9)/CLOCKS_PER_SEC;
+      printf("Thoi gian sap xep heapSort la %fs\n",time5);
+      break;
+    }
+  }while(choice!=6);
+}
+
+int menu(){
+  int cn;
+  printf("\n\t---MENU voi 1 mang dong 2000.000 so nguyen---\n\t1. Tao lai du lieu\n");
+  printf("\t2. Sap xep them dan\n\t3. Lua chon\n");
+  printf("\t4. Sap xep noi bot\n");
+  printf("\t5. HeapSort\n\t6. Exit\n\t---You choose? ");
+  do{
+    cn=getInt();
+    if(cn<1||cn>6)
+      printf("Please choose again (1-6): ");
+  }while(cn<1||cn>6);
+}
+
+int getInt(){
+  int re;
+  while(scanf("%d%*c",&re)!=1){
+    printf("This is not an integer number. Please retype the input: ");
+    while(getchar()!='\n');
+  }
+  return re;
+}
+
+
+void heapify(elementtype a[],int n){
+  int k,i,j;
+  elementtype item;
+
+  for(k=1;k<n;k++){
+    item = a[k];
+    i = k;
+    j = (i-1)/2;
+    while((i>0)&&(item.key>a[j].key)){
+      a[i] = a[j];
+      i = j;
+      j = (i-1)/2;
+    }
+    a[i] = item;
+  }
+}
+
+void adjust(elementtype a[],int root,int n){
+  int child;
+  elementtype temp,rootkey;
+  temp=a[root];
+  rootkey=a[root];
+  child=2*root+1;
+  while(child<=n-1){
+    if(child+1<=n-1)
+      if(a[child].key<a[child+1].key)
+        child++;
+    if(rootkey.key<a[child].key){
+      a[root]=a[child];
+      root=child;
+      child=2*root+1;
+    }
+    else
+      break;
+  }
+  a[root]=rootkey;
+}
+
+void heapSort(elementtype a[],int n){
+  int i,j;
+  elementtype temp;
+  heapify(a,n);
+  for(i=n-1;i>0;i--){
+    temp=a[0];
+    a[0]=a[i];
+    a[i]=temp;
+    adjust(a,0,i);
+  }
+}

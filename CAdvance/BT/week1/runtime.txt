@@ -1,0 +1,9 @@
+=>Chay lan 1: 
+=>Quicksort: 0 s 
+ Insertionsort: 0 s 
+ Selectionsort: 1 s
+=>Chay lan 2: 
+=>11000 so 
+ Quicksort: 0 s 
+ Insertionsort: 0 s 
+ Selectionsort: 0 s

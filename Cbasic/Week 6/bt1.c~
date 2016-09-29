@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct danhba
+{
+  char name[20];
+  char phone[15];
+} elementtype;
+
+typedef struct node node;
+typedef struct node
+{
+  elementtype element;
+  node *next;
+} node;
+
+node *root=NULL, *cur=NULL;
+
+node *makeNode (elementtype element)
+{
+  node *tmp;
+  tmp=(node*)malloc(sizeof(node));
+  tmp->element=element;
+  tmp->next=NULL;
+  return tmp;
+}
+
+void insert (node *new)
+{
+  if (root == NULL)
+    {
+      root=new;
+      cur=new;
+    }
+  else
+    {
+      cur->next=new;
+      cur=cur->next;
+    }
+}
+
+void printDaTa (elementtype element)
+{
+  printf("%-20s %-15s\n",element.name,element.phone);
+}
+
+void display ()
+{
+  node *tmp=root;
+  while (tmp != NULL)
+    {
+      printDaTa(tmp->element);      
+      tmp=tmp->next;
+    }
+}
+
+main()
+{
+  int n,i;
+  printf("Nhap so nguoi muon them: "); scanf("%d",&n);
+
+  elementtype element[n];
+  node *tmp;
+  for (i=0;i<n;i++)
+    {
+      printf("ten %d: ",i+1); scanf("%s",element[i].name);
+      printf("sdt %d: ",i+1); scanf("%s",element[i].phone);
+      tmp=makeNode(element[i]);
+      insert(tmp);
+    }
+  display();
+
+  free(tmp);
+}

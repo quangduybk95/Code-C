@@ -1,0 +1,12 @@
+#include<stdio.h>
+main()
+{
+  int n;float k;
+  printf("Nhap so sinh vien: ");scanf("%d",&n);
+  k = n/7;
+  printf("so luong sinh vien trong nhom nho nhat : %d\n",n/7);
+  printf("so luong sinh vien trong nhom lon nhat : %d\n",n/7+1);
+  printf("so luong sinh vien trung binh cua moi nhom : %d\n",n/7);
+  printf("So nhom tren kick thuoc trung binh la : %d\n",(n/7-k)*7);
+  printf("                                        %d\n",7-(n/7-k)*7);
+}

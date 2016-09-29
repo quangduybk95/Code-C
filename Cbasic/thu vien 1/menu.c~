@@ -1,0 +1,25 @@
+#include<stdio.h>
+
+main()
+{
+  int lc;
+  do
+    {
+      printf("###################\n");
+      printf("MENU\n");
+      printf("1.\n");
+      printf("2.\n");
+      printf("3.\n");
+      printf("4.\n");
+      printf("\n");
+      printf("Moi ban nhap lua chon : ");
+      scanf("%d%*c",&lc);
+      switch(lc)
+        {
+        case 1 :
+
+        }
+
+    }
+  while(lc!=);
+}

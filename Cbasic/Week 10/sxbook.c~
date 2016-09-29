@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define not -1;
+typedef struct
+{
+  char name[20];
+  char sdt[20];
+  char mail[20];
+}eltype;
+
+main()
+{
+  FILE *f;
+  f=fopen("book.dat","w+b");
+  eltype *a;
+  a=(eltype *)malloc(10*sizeof(eltype));
+  int i;
+  for(i=0;i<10;i++)
+    {
+      printf("Nhap ten : ");
+      gets(a[i].name);
+      printf("Nhap sdt : ");
+      gets(a[i].sdt);
+      printf("Nhap mail : ");
+      gets(a[i].sdt);
+    }
+  fwrite(a,sizeof(eltype),10,f);
+}

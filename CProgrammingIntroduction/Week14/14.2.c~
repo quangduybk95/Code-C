@@ -1,0 +1,21 @@
+#include<stdio.h>
+#define sothang 2
+typedef struct thoitiet
+{
+  int t,maxc,minc,ctb;
+} thang;
+main()
+{ thang dulieu;
+  int n=sothang,i,ttb=0,maxctb=0,minctb=0,ctbtb=0;
+  for(i=1;i<=n;i++)
+    {
+      printf("Moi ban nhap du lieu thang %d : \n",i);
+      printf("Nhap tong luong mua : ");scanf("%d",&dulieu.t);ttb=ttb+dulieu.t;
+      printf("Nhap nhiet do cao nhat : ");scanf("%d",&dulieu.maxc);maxctb=maxctb+dulieu.maxc;
+      printf("Nhap nhiet do thap nhat : ");scanf("%d",&dulieu.minc);minctb=minctb+dulieu.minc;
+      printf("Nhap nhiet do trung binh : ");scanf("%d",&dulieu.ctb);ctbtb=ctbtb+dulieu.ctb;
+    }
+  printf("Bang ket qua du lieu thoi tiet trung binh trong nam : ");
+  printf("| Tong luong mua | nhiet do max | nhiet do min | nhiet do trung binh |\n");
+  printf("|%-16.2f|%-14.2f|%-14.2f|%-21.2f|\n",ttb/n,maxctb/n,minctb/n,ctbtb/n);
+}

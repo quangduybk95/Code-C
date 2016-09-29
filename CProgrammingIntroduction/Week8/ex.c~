@@ -1,0 +1,11 @@
+#include<stdio.h>
+#define PERIOD '.'
+main() {
+char C;
+while ((C = getchar())!= PERIOD)
+putchar(C);
+printf(“Good Bye.\n”);
+}
+
+
+}

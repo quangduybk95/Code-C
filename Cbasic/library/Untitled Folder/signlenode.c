@@ -1,0 +1,257 @@
+/* Le Vinh Thien - 8C */
+// Date Create:
+#include<stdio.h>
+#include<stdlib.h>
+//////////////////////////////////////////////////
+// cac truong du lieu cua 1 node
+typedef struct {
+	int num;
+} elementtype;
+// 1 node gom truong du lieu va trg next de xd node tiep theo
+typedef struct node node;
+typedef struct node {
+	elementtype element;
+	node *next;
+}node;
+// mot ds node gom co root,tail,cur
+typedef struct {
+	node *root;
+	node *tail;
+	node *cur;
+	node *prev;
+} nodelist;
+//////////////////////////////////////////////////
+// khoi tao mot danh sach moi
+void creat(nodelist *list)
+{
+	(*list).root=(*list).tail=(*list).cur=(*list).prev=NULL;
+}
+// tao mot nut moi voi gia tri =e
+node *makeNewNode(elementtype e){
+	node *new=(node *)malloc(sizeof(node));
+	new->element=e;
+	new->next=NULL;
+	return new;
+}
+// insert after 1 node vao danh sach list voi gia tri e
+node *insertAfter(nodelist *list,elementtype e)
+{
+	node *new=makeNewNode(e);
+	if((*list).root==NULL)
+	{
+      (*list).root=(*list).tail=new;
+	}
+	else
+	{
+		(*list).tail->next=new;
+		(*list).tail=new;
+	}
+	return (*list).tail;
+}
+//insert begin
+node *insertBegin(nodelist *list,elementtype e)
+{
+	node *new=makeNewNode(e);
+	if((*list).root==NULL)
+	{
+      (*list).root=(*list).tail=new;
+	}
+	else{
+      new->next=(*list).root;
+      (*list).root=new;
+	}
+    return (*list).root;
+}
+
+// insert vao cuoi ds
+node* insertEnd(nodelist *list,elementtype e)
+{
+  node *new=makeNewNode(e);
+  if((*list).root==NULL)
+	{
+      (*list).root=(*list).tail=new;
+	}
+  else
+    {
+      (*list).tail->next=new;
+      (*list).tail=new;
+    }
+  return (*list).tail;
+}
+// insert at  position
+node * insertAtPosition(nodelist * list,elementtype e,int n)
+{
+  node *new=makeNewNode(e);
+  if((*list).root==NULL)
+    {
+      (*list).root=(*list).tail=(*list).cur=new;
+	}
+  else
+    {
+      if(n<=1)
+        {
+          insertBegin(list,new->element);
+          return (*list).cur;
+        }
+      if(n>total(*list))
+        {
+          insertEnd(list,new->element);
+          return (*list).cur;
+        }
+      else
+        {
+          (*list).cur=(*list).prev=(*list).root;
+          int i=1;
+          while(((*list).cur->next!=NULL)&&(i<=n-1))
+            {
+              i++;
+              (*list).prev=(*list).cur;
+              (*list).cur=(*list).cur->next;
+            }
+          new->next=(*list).cur;
+          (*list).prev->next=(*list).cur=new;
+        }
+    }
+  return (*list).cur;
+}
+// tong so trg trong list
+int total(nodelist list)
+{
+  int i=0;
+  list.cur=list.root;
+  while(list.cur!=NULL)
+    {
+      i++;
+      list.cur=list.cur->next;
+    }
+  return i;
+}
+/////////////////////DELETE
+//delete begin
+node * deleteBegin(nodelist *list)
+{
+  if((*list).root!=NULL)
+	{
+      node *new=(*list).root;
+		(*list).root=(*list).root->next;
+		free(new);
+	}
+  return (*list).root;
+}
+
+// delete last
+node * deleteEnd(nodelist *list)
+{
+  if((*list).root!=NULL)
+    {
+       (*list).cur=(*list).prev=(*list).root;
+          while(((*list).cur->next!=NULL))
+            {
+              (*list).prev=(*list).cur;
+              (*list).cur=(*list).cur->next;
+            }
+        node *new=(*list).cur;
+		(*list).cur=(*list).cur->next;
+		free(new);
+        (*list).tail=(*list).prev;
+        (*list).tail->next=NULL;
+        return (*list).tail;
+
+    }
+}
+
+// delete all
+/*
+
+// delete position
+int delete_postion(int n)
+{
+  if(root!=NULL)
+    {
+      if(n<=1) {
+        delete_begin();
+        return 0;
+      }
+      else if(n>=total())
+        {
+          delete_last();
+          return 0;
+        }
+      else{
+            cur=root;
+            prev=root;
+            node *new;
+            int i=1;
+            while((cur->next!=NULL)&&(i<=n-1))
+              {
+                i++;
+                prev=cur;
+                cur=cur->next;
+              }
+            new=cur;
+            prev->next=cur->next;
+            free(new);
+            cur=prev;
+      }
+    }
+}
+*/
+//////////////////////////////////////////////////
+//// cac ham tien ich co the thay doi
+// hien thi tat ca noi dung cua list
+void displayAllList(nodelist list)
+{
+  if (list.root==NULL) return;
+	printf("ds------------------\n");
+	list.cur=list.root;
+		printf("%p    %5d\n",list.root,list.root->element.num);
+	while(list.cur!=NULL)
+	{
+		printf("%p    %5d\n",list.cur,list.cur->element.num);
+		list.cur=list.cur->next;
+	}
+
+}
+// lay du lieu tu ban phim
+elementtype getData()
+{
+	elementtype e;
+	printf("Nhap so: ");scanf("%d%*c",&e.num);
+	return e;
+}
+///////////////////////////////
+main()
+{
+  nodelist ds;
+  creat(&ds);
+  char c;
+  do
+    {
+      printf("MENU\n");
+      printf("1. insertAfter\n");
+      printf("2. insertBegin\n");
+      printf("3. insertEnd\n");
+      printf("4. insertAtPosition\n");
+      printf("5. displayAllList\n");
+      printf("6. deleteBegin\n");
+      printf("7. deleteEnd\n");
+      printf("0. thoat\n");
+      printf("Chon? :");scanf("%c%*c",&c);
+      switch(c)
+        {
+        case '1': insertAfter(&ds,getData());break;
+        case '2': insertBegin(&ds,getData());break;
+        case '3': insertEnd(&ds,getData());break;
+        case '4':{
+          int i;
+          printf("Vitri chen: ");scanf("%d%*c",&i);
+          insertAtPosition(&ds,getData(),i);
+        }break;
+        case '5':displayAllList(ds);break;
+        case '6':deleteBegin(&ds);break;
+           case '7':deleteEnd(&ds);break;
+
+        }
+    }
+  while(c!='0');
+}

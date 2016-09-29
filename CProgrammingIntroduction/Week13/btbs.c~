@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+void xoakitu(char *xau,int vitri , int soluong)
+{
+    if (vitri+soluong-1>strlen(xau)) xau[0]=NULL;
+    else
+    {
+        while (xau[vitri+soluong]!=NULL)
+        {
+            xau[vitri]=xau[vitri+soluong];
+            vitri++;
+        }
+        xau[vitri]=NULL;
+    }
+}
+void trimMiddle(char *a)
+{
+  int n,i,x;
+  n=strlen(a);
+  for(i=0;i<=n;i++)
+    if (a[i]==' ') {x=i;while(a[x+1]==' ') {xoakitu(a,x+1,1);x++;}}
+}
+void trimRight(char *a)
+{
+  int n,i;
+  n=strlen(a);i=n-1;
+  while(a[i]==' ') {xoakitu(a,i,1);i--;}
+}
+void trimLeft(char *a)
+{
+  int n,i;
+  n=strlen(a);i=0;
+  while(a[i]==' ') {xoakitu(a,i,1);i++;}
+}
+main()
+{ char a[100];
+  printf("Nhap xau :");gets(a);
+  trimMiddle(a);trimRight(a);trimLeft(a);
+  printf("Xau sau khi sua :%s\n",a);
+}

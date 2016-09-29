@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<string.h>
+typedef struct x
+{
+  int x;
+  char y[10];
+} xx;
+main()
+{
+  xx a[10][10];
+  a[0][0].y=0;
+  a[0][1].y=1;
+  a[0][2].y=2;
+  a[1][0].y=2;
+  a[1][1].y=0;
+  a[1][2].y=1;
+  a[2][0].y=1;
+  a[2][1].y=2;
+  a[2][2].y=0;
+}

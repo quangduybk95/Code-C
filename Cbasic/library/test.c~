@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+///////////////// hangso
+#define IN "data.txt"
+////////////////
+typedef struct
+{
+  int num;
+} elementtype;
+
+#include " "
+////////////////////////// cac ham them
+
+
+
+
+//////////////////////// chuong trinh chinh
+main()
+{
+  char kt;
+  // khai bao ds
+  queue list;
+  // tao ds NULL
+  createQueue(&list);
+  do
+    {
+      printf("queue test\nMENU:\n");
+      printf("=> hien co : %d\n",totalQueue(list));
+      printf("0. EXIT\n");
+      printf("1. enQueue\n");
+      printf("2. deQueue\n");
+      printf("3. DISPLAY\n");
+      printf("4. DELETE\n");
+      printf("Ban chon?: ");
+      scanf("%c%*c",&kt);
+      switch(kt )
+        {
+        case '1':
+          {
+
+          }
+          break;
+        case '2':{
+          elementtype e = deQueue(&list);
+          printf("POP: %d\n",e.num);
+        } break;
+        case '3':{
+          printQueue(list);
+        }break;
+        case '4':deleteQueue(&list);break;
+        }
+    }
+  while(kt != '0');
+  deleteQueue(&list);
+}
+}

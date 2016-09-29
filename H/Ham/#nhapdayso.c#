@@ -1,0 +1,5 @@
+void nhap(int a[],int n)
+{
+  int i;
+  
+}

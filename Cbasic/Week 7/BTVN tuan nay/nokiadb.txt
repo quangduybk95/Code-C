@@ -1,0 +1,24 @@
+Nokia Lumia 925	16gb	4.5	7490000	
+Nokua Luima 720	8gb	4.3	5490000	
+Nokia 625	8gb	4.7	4190000	
+Nokia Lumia 930	32gb	5.0	12990000	
+Nokia Xl	4gb	5.0	3700000	
+Nokia Lumia 1520	32gb	6.0	9990000	
+Nokia Lumia 630	8gb	5.0	7990000	
+Nokia 630	8gb	4.5	3290000	
+Nokia X2	4gb	4.3	2990000	
+Nokia Lumia 1320	8gb	6.0	59900000	
+Nokia Lumia 730	8gb	4.7	5490000	
+Nokia Lumia 525	8gb	4.0	2790000	
+Nokia X+	4gb	4.0	2490000	
+Nokia X	4gb	4.0	2190000	
+Nokia Lumia 530	8gb	4.0	1990000	
+Nokia 301	1gb	2.4	700000	
+Nokia 20	1gb	2.4	1300000	
+Nokia 225	1gb	2.8	1300000	
+Nokia 220	1gb	2.4	1000000	
+Nokia 108	1gb	1.8	750000	
+Nokia 130	1gb	1.8	670000	
+Nokia 107	1gb	1.8	650000	
+Nokia 106	1gb	1.8	500000	
+Nokia 105	1gb	1.4	420000	
